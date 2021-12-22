@@ -6,7 +6,7 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/result_input"
         style="@style/EntryField"
         android:layout_weight="1"
@@ -31,83 +31,83 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_c"
+                android:id="@+id/clear_output_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/C" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/step_back"
+                android:id="@+id/step_back_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:src="@drawable/ic_baseline_backspace_24" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/percent"
+                android:id="@+id/operation_percent_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/percent" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/divide"
+                android:id="@+id/operation_division_button"
                 style="@style/ButtonCalculatorSecondary"
                 android:layout_gravity="center"
                 android:text="@string/divide" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/seven"
+                android:id="@+id/digit_seven_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/seven" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/eight"
+                android:id="@+id/digit_eight_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/eight" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/nine"
+                android:id="@+id/digit_nine_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/nine" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/multiply"
+                android:id="@+id/operation_multiply_button"
                 style="@style/ButtonCalculatorSecondary"
                 android:text="@string/multiply" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/four"
+                android:id="@+id/digit_four_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/four" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/five"
+                android:id="@+id/digit_five_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/five" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/six"
+                android:id="@+id/digit_six_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/six" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/minus"
+                android:id="@+id/operation_minus_button"
                 style="@style/ButtonCalculatorSecondary"
                 android:text="@string/minus" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/one"
+                android:id="@+id/digit_one_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/one" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/two"
+                android:id="@+id/digit_two_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/two" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/three"
+                android:id="@+id/digit_three_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/three" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/plus"
+                android:id="@+id/operation_plus_button"
                 style="@style/ButtonCalculatorSecondary"
                 android:text="@string/plus" />
 
@@ -116,17 +116,17 @@
                 android:clickable="false" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/zero"
+                android:id="@+id/digit_zero_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/zero" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/dot"
+                android:id="@+id/digit_dot_button"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/dot" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/equals"
+                android:id="@+id/operation_equals_button"
                 style="@style/ButtonEquals"
                 android:text="@string/equals" />
 

@@ -2,14 +2,15 @@ package com.dw.gbcalculator;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    EditText resultInput;
+    TextView resultInput;
     Button btnC, dot, zero, one, two, three, four, five, six, seven, eight, nine;
     ImageButton stepBack;
     String tempResult = "";
@@ -76,19 +77,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         resultInput = findViewById(R.id.result_input);
-        btnC = findViewById(R.id.btn_c);
-        stepBack = findViewById(R.id.step_back);
-        dot = findViewById(R.id.dot);
-        zero = findViewById(R.id.zero);
-        one = findViewById(R.id.one);
-        two = findViewById(R.id.two);
-        three = findViewById(R.id.three);
-        four = findViewById(R.id.four);
-        five = findViewById(R.id.five);
-        six = findViewById(R.id.six);
-        seven = findViewById(R.id.seven);
-        eight = findViewById(R.id.eight);
-        nine = findViewById(R.id.nine);
+        btnC = findViewById(R.id.clear_output_button);
+        stepBack = findViewById(R.id.step_back_button);
+        dot = findViewById(R.id.digit_dot_button);
+        zero = findViewById(R.id.digit_zero_button);
+        one = findViewById(R.id.digit_one_button);
+        two = findViewById(R.id.digit_two_button);
+        three = findViewById(R.id.digit_three_button);
+        four = findViewById(R.id.digit_four_button);
+        five = findViewById(R.id.digit_five_button);
+        six = findViewById(R.id.digit_six_button);
+        seven = findViewById(R.id.digit_seven_button);
+        eight = findViewById(R.id.digit_eight_button);
+        nine = findViewById(R.id.digit_nine_button);
     }
 
     @Override
