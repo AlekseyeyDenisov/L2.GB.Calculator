@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/initText"
+        android:id="@+id/result_input"
         style="@style/EntryField"
         android:layout_weight="1"
         android:text="@string/initial_text" />
@@ -31,16 +31,17 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnC"
+                android:id="@+id/btn_c"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/C" />
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/step_back"
                 style="@style/ButtonCalculatorPrimary"
                 android:src="@drawable/ic_baseline_backspace_24" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/stepBack"
+                android:id="@+id/percent"
                 style="@style/ButtonCalculatorPrimary"
                 android:text="@string/percent" />
 
