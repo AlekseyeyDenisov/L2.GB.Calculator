@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView resultInput;
+    private final CalcOperation calcOperation = new CalcOperation();
+    TextView resultOutput;
     Button btnC, dot, zero, one, two, three, four, five, six, seven, eight, nine;
     ImageButton stepBack;
-    String tempResult = "";
     private static final String SAVE_RESULT = "save_result";
 
     @Override
@@ -27,56 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void operationsCalc() {
-        btnC.setOnClickListener(v -> {
-            tempResult = "";
-            resetInput();
-        });
-        stepBack.setOnClickListener(v -> {
-            if (tempResult.length() != 0) {
-                tempResult = tempResult.substring(0, tempResult.length() - 1);
-                resultInput.setText(tempResult);
-            }
-            resetInput();
-        });
-    }
-
-    private void resetInput() {
-        if (tempResult.length() == 0)
-            resultInput.setText(getString(R.string.initial_text));
-    }
-
-    private void clickButtonNumber() {
-        dot.setOnClickListener(v -> inputView(dot));
-        zero.setOnClickListener(v -> inputView(zero));
-        one.setOnClickListener(v -> inputView(one));
-        two.setOnClickListener(v -> inputView(two));
-        three.setOnClickListener(v -> inputView(three));
-        four.setOnClickListener(v -> inputView(four));
-        five.setOnClickListener(v -> inputView(five));
-        six.setOnClickListener(v -> inputView(six));
-        seven.setOnClickListener(v -> inputView(seven));
-        eight.setOnClickListener(v -> inputView(eight));
-        nine.setOnClickListener(v -> inputView(nine));
-    }
-
-    private void inputView(Button currentBtn) {
-        String btnValue = (String) currentBtn.getText();
-        if (!tempResult.equals(btnValue) & dotCheck(btnValue)) {
-            tempResult += currentBtn.getText();
-            resultInput.setText(tempResult);
-        }
-
-    }
-
-    private boolean dotCheck(String btnValue) {
-        String dotValue = (String) dot.getText();
-        return !(btnValue.equals(dotValue) & tempResult.contains(dotValue)) &&
-                !(btnValue.equals(dotValue) & tempResult.length() == 0);
-    }
-
     private void initView() {
-        resultInput = findViewById(R.id.result_input);
+        resultOutput = findViewById(R.id.result_input);
         btnC = findViewById(R.id.clear_output_button);
         stepBack = findViewById(R.id.step_back_button);
         dot = findViewById(R.id.digit_dot_button);
@@ -92,15 +44,56 @@ public class MainActivity extends AppCompatActivity {
         nine = findViewById(R.id.digit_nine_button);
     }
 
+    private void clickButtonNumber() {
+        dot.setOnClickListener(v -> resultOutput(dot));
+        zero.setOnClickListener(v -> resultOutput(zero));
+        one.setOnClickListener(v -> resultOutput(one));
+        two.setOnClickListener(v -> resultOutput(two));
+        three.setOnClickListener(v -> resultOutput(three));
+        four.setOnClickListener(v -> resultOutput(four));
+        five.setOnClickListener(v -> resultOutput(five));
+        six.setOnClickListener(v -> resultOutput(six));
+        seven.setOnClickListener(v -> resultOutput(seven));
+        eight.setOnClickListener(v -> resultOutput(eight));
+        nine.setOnClickListener(v -> resultOutput(nine));
+    }
+
+
+    private void resultOutput(Button button) {
+        String btnValue = (String) button.getText();
+        if (calcOperation.checkButton(btnValue)) {
+            calcOperation.setTempResult(btnValue);
+            resultOutput.setText(calcOperation.getTempResult());
+        }
+
+    }
+
+    private void operationsCalc() {
+        btnC.setOnClickListener(v -> {
+            calcOperation.clear();
+            resetInput();
+        });
+        stepBack.setOnClickListener(v -> {
+            resultOutput.setText(calcOperation.stepBack());
+            resetInput();
+        });
+    }
+
+    private void resetInput() {
+        if (calcOperation.getTempResult().length() == 0)
+            resultOutput.setText(getString(R.string.initial_text));
+    }
+
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(SAVE_RESULT, tempResult);
+        outState.putString(SAVE_RESULT, calcOperation.getTempResult());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        tempResult = savedInstanceState.getString(SAVE_RESULT);
+        calcOperation.setTempResult(savedInstanceState.getString(SAVE_RESULT));
     }
 }
