@@ -106,5 +106,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         calcOperation.setTempResult(savedInstanceState.getString(SAVE_RESULT));
+        resultOutput.setText(savedInstanceState.getString(SAVE_RESULT));
     }
 }
