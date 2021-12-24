@@ -1,5 +1,6 @@
 package com.dw.gbcalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private final CalcOperation calcOperation = new CalcOperation();
     TextView resultOutput;
-    Button btnC, dot, zero, one, two, three, four, five, six, seven, eight, nine;
+    Button btnC, dot, zero, one, two, three, four, five, six, seven, eight, nine,goTuResultButton;
     ImageButton stepBack;
     private static final String SAVE_RESULT = "save_result";
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         seven = findViewById(R.id.digit_seven_button);
         eight = findViewById(R.id.digit_eight_button);
         nine = findViewById(R.id.digit_nine_button);
+        goTuResultButton = findViewById(R.id.go_to_new_activity_button);
     }
 
     private void clickButtonNumber() {
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         seven.setOnClickListener(v -> resultOutput(seven));
         eight.setOnClickListener(v -> resultOutput(eight));
         nine.setOnClickListener(v -> resultOutput(nine));
+        goTuResultButton.setOnClickListener(v -> goToActivityResult());
+    }
+
+    private void goToActivityResult() {
+        Intent intent = new Intent(this,ResultInfoActivity.class);
+        intent.putExtra(
+                ResultInfoActivity.CONSTANT_INTENT_RESULT_ACTIVITY,calcOperation.getTempResult()
+        );
+        startActivity(intent);
     }
 
 
