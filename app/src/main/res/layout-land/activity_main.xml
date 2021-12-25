@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    style="@style/background_layout"
     android:orientation="vertical">
 
     <TextView
@@ -36,9 +36,8 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/step_back_button"
-                style="@style/ButtonCalculatorPrimary"
-
-                android:src="@drawable/ic_baseline_backspace_24" />
+                style="@style/step_back"
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/operation_percent_button"
@@ -134,12 +133,12 @@
             android:id="@+id/go_to_new_activity_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:gravity="center"
-            android:background="@color/red"
             android:layout_margin="@dimen/default_margin"
+            android:background="@color/red"
+            android:gravity="center"
             android:text="@string/go_to_result"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/default_text_size" />
     </LinearLayout>
 
 </LinearLayout>
