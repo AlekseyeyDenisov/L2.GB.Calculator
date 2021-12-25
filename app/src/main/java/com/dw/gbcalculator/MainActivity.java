@@ -2,7 +2,6 @@ package com.dw.gbcalculator;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -12,9 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final CalcOperation calcOperation = new CalcOperation();
-    TextView resultOutput;
-    Button btnC, dot, zero, one, two, three, four, five, six, seven, eight, nine,goTuResultButton;
-    ImageButton stepBack;
+
+    TextView resultOutput,
+            clearButton,
+            dotButton,
+            zeroButton,
+            oneButton,
+            twoButton,
+            threeButton,
+            fourButton,
+            fiveButton,
+            sixButton,
+            sevenButton,
+            eightButton,
+            nineButton,
+            goTuResultButton;
+    ImageButton stepBackButton;
     private static final String SAVE_RESULT = "save_result";
 
     @Override
@@ -30,34 +42,34 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         resultOutput = findViewById(R.id.result_input);
-        btnC = findViewById(R.id.clear_output_button);
-        stepBack = findViewById(R.id.step_back_button);
-        dot = findViewById(R.id.digit_dot_button);
-        zero = findViewById(R.id.digit_zero_button);
-        one = findViewById(R.id.digit_one_button);
-        two = findViewById(R.id.digit_two_button);
-        three = findViewById(R.id.digit_three_button);
-        four = findViewById(R.id.digit_four_button);
-        five = findViewById(R.id.digit_five_button);
-        six = findViewById(R.id.digit_six_button);
-        seven = findViewById(R.id.digit_seven_button);
-        eight = findViewById(R.id.digit_eight_button);
-        nine = findViewById(R.id.digit_nine_button);
+        clearButton = findViewById(R.id.clear_output_button);
+        stepBackButton = findViewById(R.id.step_back_button);
+        dotButton = findViewById(R.id.digit_dot_button);
+        zeroButton = findViewById(R.id.digit_zero_button);
+        oneButton = findViewById(R.id.digit_one_button);
+        twoButton = findViewById(R.id.digit_two_button);
+        threeButton = findViewById(R.id.digit_three_button);
+        fourButton = findViewById(R.id.digit_four_button);
+        fiveButton = findViewById(R.id.digit_five_button);
+        sixButton = findViewById(R.id.digit_six_button);
+        sevenButton = findViewById(R.id.digit_seven_button);
+        eightButton = findViewById(R.id.digit_eight_button);
+        nineButton = findViewById(R.id.digit_nine_button);
         goTuResultButton = findViewById(R.id.go_to_new_activity_button);
     }
 
     private void clickButtonNumber() {
-        dot.setOnClickListener(v -> resultOutput(dot));
-        zero.setOnClickListener(v -> resultOutput(zero));
-        one.setOnClickListener(v -> resultOutput(one));
-        two.setOnClickListener(v -> resultOutput(two));
-        three.setOnClickListener(v -> resultOutput(three));
-        four.setOnClickListener(v -> resultOutput(four));
-        five.setOnClickListener(v -> resultOutput(five));
-        six.setOnClickListener(v -> resultOutput(six));
-        seven.setOnClickListener(v -> resultOutput(seven));
-        eight.setOnClickListener(v -> resultOutput(eight));
-        nine.setOnClickListener(v -> resultOutput(nine));
+        dotButton.setOnClickListener(v -> resultOutput(dotButton));
+        zeroButton.setOnClickListener(v -> resultOutput(zeroButton));
+        oneButton.setOnClickListener(v -> resultOutput(oneButton));
+        twoButton.setOnClickListener(v -> resultOutput(twoButton));
+        threeButton.setOnClickListener(v -> resultOutput(threeButton));
+        fourButton.setOnClickListener(v -> resultOutput(fourButton));
+        fiveButton.setOnClickListener(v -> resultOutput(fiveButton));
+        sixButton.setOnClickListener(v -> resultOutput(sixButton));
+        sevenButton.setOnClickListener(v -> resultOutput(sevenButton));
+        eightButton.setOnClickListener(v -> resultOutput(eightButton));
+        nineButton.setOnClickListener(v -> resultOutput(nineButton));
         goTuResultButton.setOnClickListener(v -> goToActivityResult());
     }
 
@@ -70,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void resultOutput(Button button) {
+    private void resultOutput(TextView button) {
         String btnValue = (String) button.getText();
         if (calcOperation.checkButton(btnValue)) {
             calcOperation.setTempResult(btnValue);
@@ -80,11 +92,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void operationsCalc() {
-        btnC.setOnClickListener(v -> {
+        clearButton.setOnClickListener(v -> {
             calcOperation.clear();
             resetInput();
         });
-        stepBack.setOnClickListener(v -> {
+        stepBackButton.setOnClickListener(v -> {
             resultOutput.setText(calcOperation.stepBack());
             resetInput();
         });
