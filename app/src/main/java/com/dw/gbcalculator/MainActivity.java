@@ -10,22 +10,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    private final CalcOperation calcOperation = new CalcOperation();
+    private final CalculatorModel calculatorModel = new CalculatorModel();
 
-    TextView resultOutput,
+    TextView calculationResultTextView,
             clearButton,
-            dotButton,
-            zeroButton,
-            oneButton,
-            twoButton,
-            threeButton,
-            fourButton,
-            fiveButton,
-            sixButton,
-            sevenButton,
-            eightButton,
-            nineButton,
-            goTuResultButton;
+            digitDotButton,
+            digitZeroButton,
+            digitOneButton,
+            digitTwoButton,
+            digitThreeButton,
+            digitFourButton,
+            digitFiveButton,
+            digitSixButton,
+            digitSevenButton,
+            digitEightButton,
+            digitNineButton,
+            goTuNewResultButton;
     ImageButton stepBackButton;
     private static final String SAVE_RESULT = "save_result";
 
@@ -41,42 +41,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        resultOutput = findViewById(R.id.result_input);
-        clearButton = findViewById(R.id.clear_output_button);
+        calculationResultTextView = findViewById(R.id.calculation_result_text_view);
+        clearButton = findViewById(R.id.clear_button);
         stepBackButton = findViewById(R.id.step_back_button);
-        dotButton = findViewById(R.id.digit_dot_button);
-        zeroButton = findViewById(R.id.digit_zero_button);
-        oneButton = findViewById(R.id.digit_one_button);
-        twoButton = findViewById(R.id.digit_two_button);
-        threeButton = findViewById(R.id.digit_three_button);
-        fourButton = findViewById(R.id.digit_four_button);
-        fiveButton = findViewById(R.id.digit_five_button);
-        sixButton = findViewById(R.id.digit_six_button);
-        sevenButton = findViewById(R.id.digit_seven_button);
-        eightButton = findViewById(R.id.digit_eight_button);
-        nineButton = findViewById(R.id.digit_nine_button);
-        goTuResultButton = findViewById(R.id.go_to_new_activity_button);
+        digitDotButton = findViewById(R.id.digit_dot_button);
+        digitZeroButton = findViewById(R.id.digit_zero_button);
+        digitOneButton = findViewById(R.id.digit_one_button);
+        digitTwoButton = findViewById(R.id.digit_two_button);
+        digitThreeButton = findViewById(R.id.digit_three_button);
+        digitFourButton = findViewById(R.id.digit_four_button);
+        digitFiveButton = findViewById(R.id.digit_five_button);
+        digitSixButton = findViewById(R.id.digit_six_button);
+        digitSevenButton = findViewById(R.id.digit_seven_button);
+        digitEightButton = findViewById(R.id.digit_eight_button);
+        digitNineButton = findViewById(R.id.digit_nine_button);
+        goTuNewResultButton = findViewById(R.id.go_to_new_activity_button);
     }
 
     private void clickButtonNumber() {
-        dotButton.setOnClickListener(v -> resultOutput(dotButton));
-        zeroButton.setOnClickListener(v -> resultOutput(zeroButton));
-        oneButton.setOnClickListener(v -> resultOutput(oneButton));
-        twoButton.setOnClickListener(v -> resultOutput(twoButton));
-        threeButton.setOnClickListener(v -> resultOutput(threeButton));
-        fourButton.setOnClickListener(v -> resultOutput(fourButton));
-        fiveButton.setOnClickListener(v -> resultOutput(fiveButton));
-        sixButton.setOnClickListener(v -> resultOutput(sixButton));
-        sevenButton.setOnClickListener(v -> resultOutput(sevenButton));
-        eightButton.setOnClickListener(v -> resultOutput(eightButton));
-        nineButton.setOnClickListener(v -> resultOutput(nineButton));
-        goTuResultButton.setOnClickListener(v -> goToActivityResult());
+        digitDotButton.setOnClickListener(v -> resultOutput(digitDotButton));
+        digitZeroButton.setOnClickListener(v -> resultOutput(digitZeroButton));
+        digitOneButton.setOnClickListener(v -> resultOutput(digitOneButton));
+        digitTwoButton.setOnClickListener(v -> resultOutput(digitTwoButton));
+        digitThreeButton.setOnClickListener(v -> resultOutput(digitThreeButton));
+        digitFourButton.setOnClickListener(v -> resultOutput(digitFourButton));
+        digitFiveButton.setOnClickListener(v -> resultOutput(digitFiveButton));
+        digitSixButton.setOnClickListener(v -> resultOutput(digitSixButton));
+        digitSevenButton.setOnClickListener(v -> resultOutput(digitSevenButton));
+        digitEightButton.setOnClickListener(v -> resultOutput(digitEightButton));
+        digitNineButton.setOnClickListener(v -> resultOutput(digitNineButton));
+        goTuNewResultButton.setOnClickListener(v -> goToActivityResult());
     }
 
     private void goToActivityResult() {
         Intent intent = new Intent(this,ResultInfoActivity.class);
         intent.putExtra(
-                ResultInfoActivity.CONSTANT_INTENT_RESULT_ACTIVITY,calcOperation.getTempResult()
+                ResultInfoActivity.CONSTANT_INTENT_RESULT_ACTIVITY, calculatorModel.getInputArithmeticExpression()
         );
         startActivity(intent);
     }
@@ -84,40 +84,40 @@ public class MainActivity extends AppCompatActivity {
 
     private void resultOutput(TextView button) {
         String btnValue = (String) button.getText();
-        if (calcOperation.checkButton(btnValue)) {
-            calcOperation.setTempResult(btnValue);
-            resultOutput.setText(calcOperation.getTempResult());
+        if (calculatorModel.checkEnteredData(btnValue)) {
+            calculatorModel.setInputArithmeticExpression(btnValue);
+            calculationResultTextView.setText(calculatorModel.getInputArithmeticExpression());
         }
 
     }
 
     private void operationsCalc() {
         clearButton.setOnClickListener(v -> {
-            calcOperation.clear();
+            calculatorModel.clear();
             resetInput();
         });
         stepBackButton.setOnClickListener(v -> {
-            resultOutput.setText(calcOperation.stepBack());
+            calculationResultTextView.setText(calculatorModel.backSpace());
             resetInput();
         });
     }
 
     private void resetInput() {
-        if (calcOperation.getTempResult().length() == 0)
-            resultOutput.setText(getString(R.string.initial_text));
+        if (calculatorModel.getInputArithmeticExpression().length() == 0)
+            calculationResultTextView.setText(getString(R.string.initial_text));
     }
 
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(SAVE_RESULT, calcOperation.getTempResult());
+        outState.putString(SAVE_RESULT, calculatorModel.getInputArithmeticExpression());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calcOperation.setTempResult(savedInstanceState.getString(SAVE_RESULT));
-        resultOutput.setText(savedInstanceState.getString(SAVE_RESULT));
+        calculatorModel.setInputArithmeticExpression(savedInstanceState.getString(SAVE_RESULT));
+        calculationResultTextView.setText(savedInstanceState.getString(SAVE_RESULT));
     }
 }

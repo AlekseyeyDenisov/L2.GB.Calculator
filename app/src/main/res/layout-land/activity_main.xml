@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/result_input"
+        android:id="@+id/calculation_result_text_view"
         style="@style/EntryField"
         android:layout_weight="1"
         android:text="@string/initial_text" />
@@ -29,7 +29,7 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/clear_output_button"
+                android:id="@+id/clear_button"
                 style="@style/ButtonCalculatorPrimary"
 
                 android:text="@string/C" />
