@@ -32,10 +32,10 @@
                 android:id="@+id/clear_button"
                 style="@style/ButtonCalculatorPrimary"
 
-                android:text="@string/C" />
+                android:text="@string/clear" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/step_back_button"
+                android:id="@+id/back_space_button"
                 style="@style/step_back"
                 />
 
