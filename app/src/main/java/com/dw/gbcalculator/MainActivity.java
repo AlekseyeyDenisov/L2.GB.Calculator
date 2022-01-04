@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dw.gbcalculator.domain.CalculatorModel;
 
-import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity {
     private final CalculatorModel calculatorModel = new CalculatorModel();
@@ -106,78 +104,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateInput(InputSymbol inputSymbol) {
         calculatorModel.onClickButton(inputSymbol);
-        calculationResultTextView.setText(convertInputSymbolsToString(calculatorModel.getInput()));
-    }
-
-
-    private String convertInputSymbolsToString(List<InputSymbol> inputSymbols) {
-        final StringBuilder sb = new StringBuilder();
-
-        for (InputSymbol inputSymbol : inputSymbols) {
-            switch (inputSymbol) {
-                case NUM_0:
-                    sb.append(getString(R.string.zero));
-                    break;
-                case NUM_1:
-                    sb.append(getString(R.string.one));
-                    break;
-                case NUM_2:
-                    sb.append(getString(R.string.two));
-                    break;
-                case NUM_3:
-                    sb.append(getString(R.string.three));
-                    break;
-                case NUM_4:
-                    sb.append(getString(R.string.four));
-                    break;
-                case NUM_5:
-                    sb.append(getString(R.string.five));
-                    break;
-                case NUM_6:
-                    sb.append(getString(R.string.six));
-                    break;
-                case NUM_7:
-                    sb.append(getString(R.string.seven));
-                    break;
-                case NUM_8:
-                    sb.append(getString(R.string.eight));
-                    break;
-                case NUM_9:
-                    sb.append(getString(R.string.nine));
-                    break;
-                case DOT:
-                    sb.append(getString(R.string.dot));
-                    break;
-                case CLEAR:
-                    sb.append(getString(R.string.clear));
-                    break;
-                case OP_DIVISION:
-                    sb.append(getString(R.string.divide));
-                    break;
-                case OP_MINUS:
-                    sb.append(getString(R.string.minus));
-                    break;
-                case OP_MULTIPLY:
-                    sb.append(getString(R.string.multiply));
-                    break;
-                case OP_PLUS:
-                    sb.append(getString(R.string.plus));
-                    break;
-                case OP_PRESENT:
-                    sb.append(getString(R.string.percent));
-                    break;
-                case OP_EQUALS: {
-                    //sb.append(getString(R.string.equals));
-                    break;
-                }
-
-                default:
-                    sb.append("@");
-                    break;
-            }
-
-        }
-        return sb.toString();
+        calculationResultTextView.setText(
+                calculatorModel.convertInputSymbolsToString(calculatorModel.getInput(), this)
+        );
     }
 
 
@@ -187,27 +116,5 @@ public class MainActivity extends AppCompatActivity {
         outState.putSerializable(SAVE_RESULT, calculatorModel);
     }
 
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        CalculatorModel calculatorModelRestore = (CalculatorModel) savedInstanceState.getSerializable(SAVE_RESULT);
-//        calculatorModel.setInput(calculatorModelRestore.getInput());
-//        resultOutput();
-//    }
-//
-//    private void goToActivityResult() {
-//        Intent intent = new Intent(this, ResultInfoActivity.class);
-//        intent.putExtra(
-//                ResultInfoActivity.CONSTANT_INTENT_RESULT_ACTIVITY,
-//                convertInputSymbolsToString(calculatorModel.getInput())
-//        );
-//        startActivity(intent);
-//    }
 
-    private void resultOutput() {
-        if (calculatorModel.getInput().size() == 0)
-            calculationResultTextView.setText(getString(R.string.initial_text));
-        else
-            calculationResultTextView.setText(convertInputSymbolsToString(calculatorModel.getInput()));
-    }
 }

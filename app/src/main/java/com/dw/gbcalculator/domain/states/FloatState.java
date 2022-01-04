@@ -78,12 +78,14 @@ public class FloatState extends BaseState {
             if (input.get(input.size() - 1) == InputSymbol.NUM_0) {
                 input.remove(input.size() - 1);
             }
+            if (input.size() == 0) return new InitState();
             return new IntState(input);
         }
         if (input.get(input.size() - 1) == InputSymbol.DOT) {
             input.remove(input.size() - 1);
             if (input.get(input.size() - 1) == InputSymbol.NUM_0) {
                 input.remove(input.size() - 1);
+                if (input.size() > 0) return this;
                 return new InitState();
             }
             return this;

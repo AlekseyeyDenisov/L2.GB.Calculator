@@ -4,16 +4,22 @@ import com.dw.gbcalculator.InputSymbol;
 
 public class InitState extends BaseState {
 
+    public InitState() {
+        setFirstNegativeNumber(false);
+    }
 
     @Override
     public BaseState onClickButton(InputSymbol inputSymbol) {
         switch (inputSymbol) {
             case OP_MINUS:
-                if (input.size() == 0)
-                input.add(inputSymbol);
+                if (input.size() == 0){
+                    firstNegativeNumber = true;
+                    input.add(inputSymbol);
+                }
                 return this;
             case OP_PLUS:
                 input.clear();
+                firstNegativeNumber = false;
                 return this;
             case DOT:
             case NUM_0:
@@ -33,18 +39,11 @@ public class InitState extends BaseState {
                 input.add(inputSymbol);
                 return new IntState(input);
             case CLEAR:
-                return clearInput();
             case STEP_BACK:
-                return stepBackInit();
+                return clearInput();
             default:
                 return this;
 
         }
-    }
-
-    private BaseState stepBackInit() {
-        if (input.size() > 0)
-            input.clear();
-        return this;
     }
 }

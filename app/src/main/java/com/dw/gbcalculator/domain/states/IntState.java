@@ -62,6 +62,7 @@ public class IntState extends BaseState {
             return this;
         } else input.remove(input.size() - 1);
         if (input.size() == 0) return new InitState();
+        if (input.size() == 1 && getFirstNegativeNumber()) return new InitState();
         return this;
     }
 }
