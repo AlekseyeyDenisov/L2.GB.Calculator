@@ -1,6 +1,8 @@
 package com.dw.gbcalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(v -> updateInput(InputSymbol.CLEAR));
         stepBack.setOnClickListener(v -> updateInput(InputSymbol.STEP_BACK));
 
+        goTuNewResultButton.setOnClickListener(v -> goToActivityResult());
+
     }
 
     private void updateInput(InputSymbol inputSymbol) {
@@ -109,12 +113,26 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private void goToActivityResult() {
+        String resultText = calculationResultTextView.getText().toString();
+        Log.d("@@@","TextView "+ resultText);
+        Intent intent = new Intent(this, ResultInfoActivity.class);
+        intent.putExtra(
+                ResultInfoActivity.CONSTANT_INTENT_RESULT_ACTIVITY, resultText
+        );
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(SAVE_RESULT, calculatorModel);
+        outState.putString(SAVE_RESULT, calculationResultTextView.getText().toString());
     }
 
-
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        calculationResultTextView.setText(savedInstanceState.getString(SAVE_RESULT));
+    }
 }

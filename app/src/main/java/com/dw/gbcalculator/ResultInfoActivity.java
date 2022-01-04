@@ -1,5 +1,6 @@
 package com.dw.gbcalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -16,8 +17,15 @@ public class ResultInfoActivity extends AppCompatActivity {
 
         resultCalcInfo = findViewById(R.id.result_calc_info);
 
-        String text = getIntent().getExtras().getString(CONSTANT_INTENT_RESULT_ACTIVITY);
-        resultCalcInfo.setText(text);
+
+        final Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(CONSTANT_INTENT_RESULT_ACTIVITY)) {
+            String text = intent.getExtras().getString(CONSTANT_INTENT_RESULT_ACTIVITY);
+            resultCalcInfo.setText(text);
+        }
+
+
+
 
 
     }
