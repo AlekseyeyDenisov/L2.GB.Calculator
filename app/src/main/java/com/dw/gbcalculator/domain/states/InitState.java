@@ -4,12 +4,17 @@ import com.dw.gbcalculator.InputSymbol;
 
 public class InitState extends BaseState {
 
+
     @Override
     public BaseState onClickButton(InputSymbol inputSymbol) {
         switch (inputSymbol) {
             case OP_MINUS:
+                if (input.size() == 0)
                 input.add(inputSymbol);
-                return new MinusState(input);
+                return this;
+            case OP_PLUS:
+                input.clear();
+                return this;
             case DOT:
             case NUM_0:
                 input.add(InputSymbol.NUM_0);
@@ -27,9 +32,19 @@ public class InitState extends BaseState {
             case NUM_9:
                 input.add(inputSymbol);
                 return new IntState(input);
+            case CLEAR:
+                return clearInput();
+            case STEP_BACK:
+                return stepBackInit();
             default:
                 return this;
 
         }
+    }
+
+    private BaseState stepBackInit() {
+        if (input.size() > 0)
+            input.clear();
+        return this;
     }
 }

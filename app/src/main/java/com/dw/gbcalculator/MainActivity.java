@@ -1,6 +1,5 @@
 package com.dw.gbcalculator;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,9 +16,16 @@ public class MainActivity extends AppCompatActivity {
     private final CalculatorModel calculatorModel = new CalculatorModel();
 
     TextView calculationResultTextView,
-            clearButton,
             operationMinus,
-            digitDotButton,
+            operationPlus,
+            operationDivision,
+            operationEquals,
+            operationMultiply,
+            operationPercent,
+
+    clearButton,
+
+    digitDotButton,
             digitZeroButton,
             digitOneButton,
             digitTwoButton,
@@ -31,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
             digitEightButton,
             digitNineButton,
             goTuNewResultButton;
-    ImageButton backSpaceButton;
+
+    ImageButton stepBack;
     private static final String SAVE_RESULT = "save_result";
 
     @Override
@@ -46,10 +53,15 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         calculationResultTextView = findViewById(R.id.calculation_result_text_view);
         clearButton = findViewById(R.id.clear_button);
-        backSpaceButton = findViewById(R.id.back_space_button);
+        stepBack = findViewById(R.id.back_space_button);
         digitDotButton = findViewById(R.id.digit_dot_button);
 
         operationMinus = findViewById(R.id.operation_minus_button);
+        operationPlus = findViewById(R.id.operation_plus_button);
+        operationDivision = findViewById(R.id.operation_division_button);
+        operationEquals = findViewById(R.id.operation_equals_button);
+        operationMultiply = findViewById(R.id.operation_multiply_button);
+        operationPercent = findViewById(R.id.operation_percent_button);
 
 
         digitZeroButton = findViewById(R.id.digit_zero_button);
@@ -80,13 +92,16 @@ public class MainActivity extends AppCompatActivity {
         digitNineButton.setOnClickListener(v -> updateInput(InputSymbol.NUM_9));
 
         operationMinus.setOnClickListener(v -> updateInput(InputSymbol.OP_MINUS));
+        operationPlus.setOnClickListener(v -> updateInput(InputSymbol.OP_PLUS));
+        operationDivision.setOnClickListener(v -> updateInput(InputSymbol.OP_DIVISION));
+        operationMultiply.setOnClickListener(v -> updateInput(InputSymbol.OP_MULTIPLY));
+        operationPercent.setOnClickListener(v -> updateInput(InputSymbol.OP_PRESENT));
+
+        operationEquals.setOnClickListener(v -> updateInput(InputSymbol.OP_EQUALS));
 
         clearButton.setOnClickListener(v -> updateInput(InputSymbol.CLEAR));
-        backSpaceButton.setOnClickListener(v -> updateInput(InputSymbol.STEP_BACK));
+        stepBack.setOnClickListener(v -> updateInput(InputSymbol.STEP_BACK));
 
-
-
-        //goTuNewResultButton.setOnClickListener(v -> goToActivityResult());
     }
 
     private void updateInput(InputSymbol inputSymbol) {
@@ -97,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String convertInputSymbolsToString(List<InputSymbol> inputSymbols) {
         final StringBuilder sb = new StringBuilder();
+
         for (InputSymbol inputSymbol : inputSymbols) {
             switch (inputSymbol) {
                 case NUM_0:
@@ -138,9 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 case OP_DIVISION:
                     sb.append(getString(R.string.divide));
                     break;
-                case OP_EQUALS:
-                    sb.append(getString(R.string.equals));
-                    break;
                 case OP_MINUS:
                     sb.append(getString(R.string.minus));
                     break;
@@ -153,6 +166,11 @@ public class MainActivity extends AppCompatActivity {
                 case OP_PRESENT:
                     sb.append(getString(R.string.percent));
                     break;
+                case OP_EQUALS: {
+                    //sb.append(getString(R.string.equals));
+                    break;
+                }
+
                 default:
                     sb.append("@");
                     break;
@@ -161,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return sb.toString();
     }
-
 
 
     @Override
@@ -187,10 +204,10 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 //    }
 
-    private void resultOutput(){
+    private void resultOutput() {
         if (calculatorModel.getInput().size() == 0)
             calculationResultTextView.setText(getString(R.string.initial_text));
         else
-        calculationResultTextView.setText(convertInputSymbolsToString(calculatorModel.getInput()));
+            calculationResultTextView.setText(convertInputSymbolsToString(calculatorModel.getInput()));
     }
 }

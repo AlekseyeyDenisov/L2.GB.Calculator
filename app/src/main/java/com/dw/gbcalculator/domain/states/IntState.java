@@ -13,7 +13,7 @@ public class IntState extends BaseState {
 
     @Override
     public BaseState onClickButton(InputSymbol inputSymbol) {
-        switch (inputSymbol){
+        switch (inputSymbol) {
             case NUM_0:
             case NUM_1:
             case NUM_2:
@@ -24,17 +24,27 @@ public class IntState extends BaseState {
             case NUM_7:
             case NUM_8:
             case NUM_9:
+                if (!input.contains(InputSymbol.OP_EQUALS))
                 input.add(inputSymbol);
                 return this;
+            case OP_MINUS:
+            case OP_DIVISION:
+            case OP_MULTIPLY:
+            case OP_PLUS:
+            case OP_PRESENT:
+                if (!input.contains(InputSymbol.OP_EQUALS))
+                checkOperator(inputSymbol);
+                return this;
+            case OP_EQUALS:
+                if (!input.contains(InputSymbol.OP_EQUALS))
+                checkEquals(inputSymbol);
+                return this;
             case STEP_BACK:
-                if (input.size() > 1){
-                    input.remove(input.size() - 1);
-                    return this;
-                }
-                else return new InitState();
+                return stepBackInt();
             case CLEAR:
-                return new InitState();
+                return clearInput();
             case DOT:
+                if (!input.contains(InputSymbol.OP_EQUALS))
                 input.add(inputSymbol);
                 return new FloatState(input);
             default:
@@ -42,5 +52,16 @@ public class IntState extends BaseState {
         }
 
 
+    }
+
+    private BaseState stepBackInt() {
+        if (input.get(input.size() - 1) == operator) {
+            input.remove(input.size() - 1);
+            operator = InputSymbol.UNDEFINE;
+            if (input.size() == 0) return new InitState();
+            return this;
+        } else input.remove(input.size() - 1);
+        if (input.size() == 0) return new InitState();
+        return this;
     }
 }

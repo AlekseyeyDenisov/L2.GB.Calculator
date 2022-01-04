@@ -20,6 +20,8 @@ public class CalculatorModel implements Serializable {
         Log.d("@@@","Old State " + currentState.getClass().getSimpleName());
         Log.d("@@@","Input symbol " + inputSymbol.name());
         Log.d("@@@","NewState " + newState.getClass().getSimpleName());
+        Log.d("@@@","result " + currentState.getInput());
+        //Log.d("@@@","operator " + currentState.getOperator());
         Log.d("@@@","----------------");
 
         currentState = newState;
@@ -30,6 +32,8 @@ public class CalculatorModel implements Serializable {
     public List<InputSymbol> getInput() {
         return new ArrayList<>(currentState.getInput());
     }
+
+
 
 
 }
