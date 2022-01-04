@@ -12,27 +12,26 @@
         android:layout_weight="1"
         android:text="@string/initial_text" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="8"
         android:gravity="center"
         android:orientation="vertical">
-
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:columnCount="4"
+            android:columnCount="7"
             android:orientation="horizontal"
             tools:context=".MainActivity">
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ButtonCalculatorPrimary"
                 android:id="@+id/clear_button"
+                style="@style/ButtonCalculatorPrimary"
+
                 android:text="@string/clear" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -43,6 +42,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/operation_percent_button"
                 style="@style/ButtonCalculatorPrimary"
+
                 android:text="@string/percent" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -52,44 +52,19 @@
                 android:text="@string/divide" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/digit_seven_button"
-                style="@style/ButtonCalculatorPrimary"
-                android:text="@string/seven" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/digit_eight_button"
-                style="@style/ButtonCalculatorPrimary"
-                android:text="@string/eight" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/digit_nine_button"
-                style="@style/ButtonCalculatorPrimary"
-                android:text="@string/nine" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/operation_multiply_button"
                 style="@style/ButtonCalculatorSecondary"
                 android:text="@string/multiply" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/digit_four_button"
-                style="@style/ButtonCalculatorPrimary"
-                android:text="@string/four" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/digit_five_button"
-                style="@style/ButtonCalculatorPrimary"
-                android:text="@string/five" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/digit_six_button"
-                style="@style/ButtonCalculatorPrimary"
-                android:text="@string/six" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/operation_minus_button"
                 style="@style/ButtonCalculatorSecondary"
                 android:text="@string/minus" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/operation_plus_button"
+                style="@style/ButtonCalculatorSecondary"
+                android:text="@string/plus" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/digit_one_button"
@@ -107,13 +82,34 @@
                 android:text="@string/three" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/operation_plus_button"
-                style="@style/ButtonCalculatorSecondary"
-                android:text="@string/plus" />
+                android:id="@+id/digit_four_button"
+                style="@style/ButtonCalculatorPrimary"
+                android:text="@string/four" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/digit_five_button"
                 style="@style/ButtonCalculatorPrimary"
-                android:clickable="false" />
+                android:text="@string/five" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/digit_six_button"
+                style="@style/ButtonCalculatorPrimary"
+                android:text="@string/six" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/digit_seven_button"
+                style="@style/ButtonCalculatorPrimary"
+                android:text="@string/seven" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/digit_eight_button"
+                style="@style/ButtonCalculatorPrimary"
+                android:text="@string/eight" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/digit_nine_button"
+                style="@style/ButtonCalculatorPrimary"
+                android:text="@string/nine" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/digit_zero_button"
@@ -128,19 +124,21 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/operation_equals_button"
                 style="@style/ButtonEquals"
-                android:textColor="@color/white"
+                android:layout_columnSpan="3"
                 android:text="@string/equals" />
 
         </GridLayout>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/go_to_new_activity_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:gravity="center"
-            android:background="@color/red"
             android:layout_margin="@dimen/default_margin"
+            android:background="@color/red"
+            android:gravity="center"
             android:text="@string/go_to_result"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/default_text_size" />
     </LinearLayout>
+
 </LinearLayout>

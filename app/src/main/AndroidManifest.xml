@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GBCalculator">
         <activity
+            android:name=".ResultInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
